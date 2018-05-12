@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+
+if [[ ! -d /mnt/config/www/dokuwiki ]]; then
+  if [[ ! -f /usr/src/dokuwiki-stable.tgz ]]; then
+    cd /usr/src
+    wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz
+  fi
+  cd /mnt/config/www
+  s6-setuidgid guardian tar -xf /usr/src/dokuwiki-stable.tgz
+  chown -R guardian:users /mnt/config/www/dokuwiki-*
+  s6-setuidgid guardian mv /mnt/config/www/dokuwiki-* /mnt/config/www/dokuwiki
+  echo 'Sitemap: /?do=sitemap' >>/mnt/config/www/dokuwiki/robots.txt
+fi
