@@ -1,7 +1,7 @@
 FROM nephatrine/base-php7:latest
 LABEL maintainer="Daniel Wolf <nephatrine@gmail.com>"
 
-RUN echo "====== PREPARE BASIC UTILITIES ======" \
+RUN echo "====== RUNTIME CONFIGURATION ======" \
  && apk --update upgrade \
  \
  && echo "====== CONFIGURE PHP ======" \
