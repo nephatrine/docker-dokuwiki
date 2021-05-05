@@ -1,13 +1,7 @@
-FROM nephatrine/base-php7:latest
+FROM nephatrine/nginx-php:latest
 LABEL maintainer="Daniel Wolf <nephatrine@gmail.com>"
 
-RUN echo "====== UPDATE PACKAGES ======" \
- && apk --update upgrade \
- \
- && echo "====== SYSTEM CONFIGURATION ======" \
- && sed -i 's/index.php/doku.php index.php/g' /etc/nginx/nginx.conf \
- \
- && echo "====== CLEANUP ======" \
- && rm -rf /tmp/* /var/cache/apk/*
+RUN echo "====== SYSTEM CONFIGURATION ======" \
+ && sed -i 's/index.php/doku.php index.php/g' /etc/nginx/nginx.conf
 
 COPY override /
